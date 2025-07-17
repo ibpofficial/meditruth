@@ -1666,216 +1666,742 @@
 
 
 
-  /* Fooled Section Styles */
-  .fooled-section {
-    padding: 6rem 5%;
-    background: linear-gradient(135deg, rgba(var(--accent), 0.03) 0%, rgba(var(--primary), 0.03) 100%);
-    position: relative;
-    overflow: hidden;
-    max-width: 1400px;
-    margin: 0 auto;
+
+
+
+
+
+
+
+/* Deception Section - Theme Variables */
+:root {
+  --deception-primary: var(--primary);
+  --deception-accent: var(--accent);
+  --deception-text: var(--text);
+  --deception-bg: var(--bg);
+  --deception-card-bg: var(--card-bg);
+  --deception-shadow: var(--shadow);
+}
+
+[data-theme="dark"] {
+  --deception-primary: #a29bfe;
+  --deception-accent: #ff7675;
+  --deception-text: #f9f9f9;
+  --deception-bg: #1a1a2e;
+  --deception-card-bg: #16213e;
+  --deception-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Styles */
+.deception-section {
+  position: relative;
+  padding: 6rem 5%;
+  background-color: var(--deception-bg);
+  overflow: hidden;
+}
+
+.deception-bg-element {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: 0;
+  animation: float 15s infinite ease-in-out;
+}
+
+.deception-bg-element:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  background: var(--deception-primary);
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.deception-bg-element:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  background: var(--deception-accent);
+  bottom: -50px;
+  left: -50px;
+  animation-delay: 3s;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.title-highlight {
+  background: linear-gradient(45deg, var(--deception-primary), var(--deception-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+
+.dollar-icon {
+  font-size: 3rem;
+  color: var(--deception-accent);
+  animation: pulse 2s infinite;
+}
+
+.deception-quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--deception-text);
+  position: relative;
+  padding: 1rem 2rem;
+  display: inline-block;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.deception-quote::before,
+.deception-quote::after {
+  content: '"';
+  font-size: 4rem;
+  color: rgba(var(--deception-accent), 0.3);
+  position: absolute;
+  line-height: 1;
+}
+
+.deception-quote::before {
+  top: 0;
+  left: 0;
+}
+
+.deception-quote::after {
+  bottom: -2rem;
+  right: 0;
+}
+
+.quote-underline {
+  width: 100px;
+  height: 3px;
+  background: var(--deception-accent);
+  margin: 1.5rem auto 0;
+  animation: underlineGrow 1s forwards;
+}
+
+/* Deception Grid */
+.deception-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.deception-card {
+  background: var(--deception-card-bg);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: var(--deception-shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--deception-primary);
+}
+
+.deception-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(var(--deception-primary), 0.2);
+}
+
+.deception-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(var(--deception-primary), 0.03) 0%, transparent 100%);
+  z-index: 0;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: var(--deception-primary);
+  width: 50px;
+  height: 50px;
+  background: rgba(var(--deception-primary), 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-header h3 {
+  font-size: 1.4rem;
+  color: var(--deception-text);
+}
+
+.card-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-bubble {
+  background: var(--deception-accent);
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.card-stats span {
+  opacity: 0.9;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.deception-list {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+
+.deception-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.deception-list li::before {
+  content: '•';
+  color: var(--deception-primary);
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -3px;
+}
+
+.price-comparison {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.price {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.price.branded {
+  background: rgba(var(--deception-accent), 0.1);
+  border: 1px solid rgba(var(--deception-accent), 0.3);
+}
+
+.price.generic {
+  background: rgba(var(--deception-primary), 0.1);
+  border: 1px solid rgba(var(--deception-primary), 0.3);
+}
+
+.price span {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.price strong {
+  font-size: 1.4rem;
+}
+
+.govt-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(var(--deception-primary), 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.govt-note i {
+  color: var(--deception-accent);
+  font-size: 1.5rem;
+}
+
+.reason {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.reason-icon {
+  font-size: 1.5rem;
+  color: var(--deception-primary);
+  width: 50px;
+  height: 50px;
+  background: rgba(var(--deception-primary), 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reason h4 {
+  margin-bottom: 0.3rem;
+  color: var(--deception-text);
+}
+
+.reason p {
+  opacity: 0.8;
+}
+
+.action-step {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  background: var(--deception-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.action-step p {
+  margin: 0;
+}
+
+.action-step strong {
+  color: var(--deception-primary);
+}
+
+/* Takeaway Box */
+.takeaway-box {
+  background: rgba(var(--deception-primary), 0.1);
+  border-left: 4px solid var(--deception-primary);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 0 15px 15px 0;
+  max-width: 800px;
+  margin: 3rem auto 0;
+}
+
+.takeaway-box i {
+  font-size: 2.5rem;
+  color: var(--deception-primary);
+}
+
+.takeaway-box p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.takeaway-box strong {
+  color: var(--deception-primary);
+}
+
+/* Floating Icons */
+.floating-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-icons i {
+  position: absolute;
+  font-size: 2rem;
+  color: rgba(var(--deception-primary), 0.1);
+  animation: floatAround 15s infinite linear;
+}
+
+.floating-icons i:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-icons i:nth-child(2) {
+  top: 70%;
+  left: 80%;
+  animation-delay: 5s;
+}
+
+.floating-icons i:nth-child(3) {
+  top: 40%;
+  left: 70%;
+  animation-delay: 10s;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 2.5rem;
   }
   
-  .fooled-container {
-    background-color: var(--card-bg);
-    border-radius: 30px;
-    padding: 4rem;
-    box-shadow: var(--shadow);
-    position: relative;
-    z-index: 2;
-  }
-  
-  .fooled-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    text-align: center;
-    background: linear-gradient(45deg, var(--accent), var(--primary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    position: relative;
-  }
-  
-  .fooled-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent), var(--primary));
-    border-radius: 2px;
-  }
-  
-  .fooled-quote {
-    text-align: center;
-    margin: 2rem 0 3rem;
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--text);
-    opacity: 0.9;
-  }
-  
-  .fooled-quote blockquote {
-    position: relative;
-    padding: 1.5rem;
-    border-left: 4px solid var(--accent);
-    background: rgba(var(--primary), 0.05);
-    border-radius: 0 15px 15px 0;
-  }
-  
-  .fooled-quote blockquote::before {
-    content: '"';
-    position: absolute;
-    top: 0;
-    left: 10px;
-    font-size: 4rem;
-    color: var(--accent);
-    opacity: 0.2;
-    line-height: 1;
-  }
-  
-  .fooled-point {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px dashed rgba(var(--primary), 0.3);
-  }
-  
-  .fooled-point:last-child {
-    border-bottom: none;
-  }
-  
-  .fooled-point h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .fooled-point ul {
-    padding-left: 2rem;
-  }
-  
-  .fooled-point li {
-    margin-bottom: 1rem;
-    line-height: 1.7;
-  }
-  
-  .solution-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  
-  .solution-card {
-    background: rgba(var(--primary), 0.05);
-    padding: 1.5rem;
-    border-radius: 15px;
-    transition: var(--transition);
-    border: 1px solid rgba(var(--primary), 0.1);
-  }
-  
-  .solution-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(var(--primary), 0.1);
-    background: rgba(var(--primary), 0.1);
-  }
-  
-  .solution-card i {
-    font-size: 1.8rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    display: block;
-  }
-  
-  .conclusion-box {
-    background: linear-gradient(135deg, rgba(var(--primary), 0.1) 0%, rgba(var(--accent), 0.1) 100%);
-    padding: 2rem;
-    border-radius: 15px;
-    margin-top: 3rem;
-    border-left: 4px solid var(--accent);
-  }
-  
-  .conclusion-box h4 {
+  .deception-quote {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    flex-direction: column;
   }
   
-  .money-icon {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    font-size: 3rem;
-    color: var(--accent);
-    opacity: 0.3;
-    z-index: 1;
+  .deception-grid {
+    grid-template-columns: 1fr;
   }
   
-  .money-pulse {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--accent);
-    animation: pulse 3s infinite;
-    opacity: 0;
+  .price-comparison {
+    flex-direction: column;
   }
   
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .fooled-title {
-      font-size: 2.5rem;
-    }
-    
-    .fooled-quote {
-      font-size: 1.2rem;
-    }
+  .takeaway-box {
+    flex-direction: column;
+    text-align: center;
+    border-left: none;
+    border-top: 4px solid var(--deception-primary);
+    border-radius: 0 0 15px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
   }
   
-  @media (max-width: 768px) {
-    .fooled-container {
-      padding: 2rem;
-    }
-    
-    .fooled-title {
-      font-size: 2rem;
-    }
-    
-    .fooled-point h3 {
-      font-size: 1.3rem;
-    }
-    
-    .money-icon {
-      top: 20px;
-      right: 20px;
-      font-size: 2rem;
-    }
+  .deception-quote {
+    font-size: 1.1rem;
+    padding: 1rem;
   }
   
-  @media (max-width: 480px) {
-    .fooled-section {
-      padding: 4rem 5%;
-    }
-    
-    .fooled-title {
-      font-size: 1.8rem;
-    }
-    
-    .solution-grid {
-      grid-template-columns: 1fr;
-    }
+  .deception-card {
+    padding: 1.5rem;
   }
+  
+  .card-header h3 {
+    font-size: 1.2rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Medicine Comparison Card */
+.medicine-comparison-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin: 3rem 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--accent);
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.comparison-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary);
+}
+
+.comparison-header i {
+  color: var(--accent);
+}
+
+.toggle-view {
+  display: flex;
+  background: rgba(var(--primary), 0.1);
+  border-radius: 50px;
+  padding: 5px;
+}
+
+.toggle-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.medicine-item {
+  padding: 1.5rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.branded {
+  background: rgba(var(--accent), 0.05);
+  border: 1px dashed rgba(var(--accent), 0.3);
+}
+
+.generic {
+  background: rgba(var(--primary), 0.05);
+  border: 1px dashed rgba(var(--primary), 0.3);
+}
+
+.medicine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.medicine-header h4 {
+  margin: 0;
+  color: var(--text);
+}
+
+.branded .medicine-header h4 {
+  color: var(--accent);
+}
+
+.generic .medicine-header h4 {
+  color: var(--primary);
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.expensive {
+  background: rgba(var(--accent), 0.2);
+  color: var(--accent);
+}
+
+.affordable {
+  background: rgba(var(--primary), 0.2);
+  color: var(--primary);
+}
+
+.medicine-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.salt-name {
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.branded .price {
+  color: var(--accent);
+}
+
+.generic .price {
+  color: var(--primary);
+}
+
+.additional-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.added-salts {
+  background: rgba(255,0,0,0.1);
+  color: #ff6b6b;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.marketing-tag {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-style: italic;
+}
+
+.pure {
+  background: rgba(0,200,0,0.1);
+  color: #51cf66;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.comparison-summary {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.savings-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,200,0,0.1);
+  color: #51cf66;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.savings-badge i {
+  font-size: 1.2rem;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.disclaimer i {
+  color: var(--accent);
+}
+
+/* Interactive Elements */
+.toggle-btn:hover {
+  transform: translateY(-2px);
+}
+
+.medicine-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .medicine-item {
+    padding: 1rem;
+  }
+  
+  .comparison-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .toggle-view {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .medicine-comparison-card {
+    padding: 1.5rem;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+  }
+  
+  .salt-name {
+    font-size: 0.9rem;
+  }
+}
+  
 
     </style>
 </head>
@@ -1900,8 +2426,8 @@
 
             <div class="nav-links">
                 <a href="#">Home</a>
-                <a href="#">Features</a>
-                <a href="#">About</a>
+                
+                <a href="#about">About</a>
                 <a href="#">Contact</a>
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon"></i>
@@ -1948,80 +2474,160 @@
 
 
 
+<!-- Add this to your "How Much We Are Fooled For Money" section -->
 
 
 
-
-
-
-    <section class="fooled-section" id="fooled">
-  <div class="fooled-container">
-    <h2 class="fooled-title">How Much We Are Fooled For Money</h2>
-    <div class="fooled-quote">
-      <blockquote>"By doctors and Private Company's as money making Machine"</blockquote>
+<section class="deception-section" id="deception">
+  <!-- Animated background elements -->
+  <div class="deception-bg-element"></div>
+  <div class="deception-bg-element"></div>
+  
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-highlight">How Much We Are</span>
+        <span class="title-highlight">Fooled For Money</span>
+        <i class="fas fa-dollar-sign dollar-icon"></i>
+      </h2>
+      <blockquote class="deception-quote">
+        "By doctors and private companies as money-making machines"
+        <div class="quote-underline"></div>
+      </blockquote>
     </div>
     
-    <div class="fooled-content">
-      <div class="fooled-point">
-        <h3><i class="fas fa-pills"></i> Chances of Doctors Prescribing Costly Branded Medicines Over Cheaper Alternatives</h3>
-        <ul>
-          <li>Estimated <span class="highlight">70-85% of prescriptions</span> may favor branded medicines when equally effective generic alternatives exist.</li>
-          <li>Many doctors have tie-ups with pharmaceutical companies, leading to a bias toward specific brands.</li>
-          <li>Generic medicines (same composition, different brand) can be <span class="highlight">60-90% cheaper</span>, but patients often remain unaware.</li>
-        </ul>
-      </div>
-      
-      <div class="fooled-point">
-        <h3><i class="fas fa-flask"></i> Adding Unnecessary Salts or Combinations (Fixed-Dose Combinations - FDCs)</h3>
-        <ul>
-          <li><span class="highlight">30-50% of prescriptions</span> may contain non-essential combinations (e.g., paracetamol + additional salts that don't enhance efficacy).</li>
-          <li>The Indian government has banned many irrational FDCs, but some still circulate.</li>
-          <li>Doctors sometimes prescribe modified versions (e.g., "extra power" or "fast-acting" variants) that offer no real benefit but cost more.</li>
-        </ul>
-      </div>
-      
-      <div class="fooled-point">
-        <h3><i class="fas fa-question-circle"></i> Why This Happens?</h3>
-        <ul>
-          <li><strong>Pharma Incentives:</strong> Doctors may receive gifts, commissions, or foreign trips for promoting certain brands.</li>
-          <li><strong>Lack of Strict Regulations:</strong> While the Medical Council of India (MCI) prohibits unethical practices, enforcement is weak.</li>
-          <li><strong>Patient Awareness Gap:</strong> Many patients blindly trust doctors and don't ask for cheaper alternatives.</li>
-        </ul>
-      </div>
-      
-      <div class="fooled-point">
-        <h3><i class="fas fa-lightbulb"></i> What Can You Do? Just Waste Your Time In Doing These Things </h3>
-        <div class="solution-grid">
-          <div class="solution-card">
-            <i class="fas fa-tag"></i>
-            <p>Ask for Generic Names (waste of time )– Always request the salt name (e.g., "Can I take generic paracetamol instead of Crocin?")</p>
+    <!-- Deception Grid -->
+    <div class="deception-grid">
+      <!-- Card 1 -->
+      <div class="deception-card" data-aos="fade-up">
+        <div class="card-header">
+          <i class="fas fa-pills card-icon"></i>
+          <h3>Branded vs Generic Medicines</h3>
+        </div>
+        <div class="card-stats">
+          <div class="stat-bubble">50-70%</div>
+          <span>of prescriptions favor brands unnecessarily</span>
+        </div>
+        <div class="card-content">
+          <p>Doctors often prescribe costly branded medicines when equally effective generic alternatives exist, sometimes due to:</p>
+          <ul class="deception-list">
+            <li>Pharmaceutical company incentives</li>
+            <li>Brand recognition bias</li>
+            <li>Patient perception pressure</li>
+          </ul>
+          <div class="price-comparison">
+            <div class="price branded">
+              <span>Branded:</span>
+              <strong>₹200-500</strong>
+            </div>
+            <div class="price generic">
+              <span>Generic:</span>
+              <strong>₹20-100</strong>
+            </div>
           </div>
-          <div class="solution-card">
-            <i class="fas fa-user-md"></i>
-            <p>The Solutions Are good But Rarely help you </p>
-          </div>
-          <div class="solution-card">
-            <i class="fas fa-rupee-sign"></i>
-            <p>Compare Prices Online – Use Pharmeasy, 1mg, or Jan Aushadhi stores for cheaper alternatives.</p>
-          </div>
-          
         </div>
       </div>
       
-      <div class="conclusion-box">
-        <h4><i class="fas fa-exclamation-triangle"></i> Conclusion</h4>
-        <p>There's a high chance (<span class="highlight">70-85%</span>) that doctors prescribe costlier branded medicines when cheaper options exist. Around <span class="highlight">30-50%</span> of prescriptions may include unnecessary salts or combinations. Ihave A solution And still Working On It <span class="highlight">Contact Me for More And To JOIN , HELP , MAKE THIS BIG</span></p>
+      <!-- Card 2 -->
+      <div class="deception-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-header">
+          <i class="fas fa-flask card-icon"></i>
+          <h3>Unnecessary Salt Combinations</h3>
+        </div>
+        <div class="card-stats">
+          <div class="stat-bubble">30-50%</div>
+          <span>contain non-essential combinations</span>
+        </div>
+        <div class="card-content">
+          <p>Common deceptive practices include:</p>
+          <ul class="deception-list">
+            <li>Fixed-Dose Combinations (FDCs) with no added benefit</li>
+            <li>"Extra power" formulations that are just marketing</li>
+            <li>Modified release versions when not clinically needed</li>
+          </ul>
+          <div class="govt-note">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>The Indian government has banned 344 irrational FDCs</span>
+          </div>
+        </div>
       </div>
+      
+      <!-- Card 3 -->
+      <div class="deception-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-header">
+          <i class="fas fa-question-circle card-icon"></i>
+          <h3>Why This Happens</h3>
+        </div>
+        <div class="card-content">
+          <div class="reason">
+            <i class="fas fa-gift reason-icon"></i>
+            <div>
+              <h4>Pharma Incentives</h4>
+              <p>Gifts, commissions, and trips influence prescriptions</p>
+            </div>
+          </div>
+          <div class="reason">
+            <i class="fas fa-gavel reason-icon"></i>
+            <div>
+              <h4>Weak Regulations</h4>
+              <p>MCI guidelines exist but enforcement is lacking</p>
+            </div>
+          </div>
+          <div class="reason">
+            <i class="fas fa-user-shield reason-icon"></i>
+            <div>
+              <h4>Patient Awareness Gap</h4>
+              <p>Most patients don't question their doctors</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="deception-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-header">
+          <i class="fas fa-shield-alt card-icon"></i>
+          <h3>What You Can Do</h3>
+        </div>
+        <div class="card-content">
+          <div class="action-step">
+            <span class="step-number">1</span>
+            <p>Always ask for the <strong>generic salt name</strong></p>
+          </div>
+          <div class="action-step">
+            <span class="step-number">2</span>
+            <p>Check <strong>banned FDCs</strong> on CDSCO website</p>
+          </div>
+          <div class="action-step">
+            <span class="step-number">3</span>
+            <p>Compare prices on <strong>Pharmeasy/1mg</strong></p>
+          </div>
+          <div class="action-step">
+            <span class="step-number">4</span>
+            <p>Get a <strong>second opinion</strong> for brand-heavy prescriptions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Takeaway -->
+    <div class="takeaway-box" data-aos="fade-up">
+      <i class="fas fa-lightbulb"></i>
+      <p>There's a <strong>50-70% chance</strong> your prescription could be cheaper if you ask for generic alternatives!</p>
     </div>
   </div>
   
-  <div class="money-icon">
-    <i class="fas fa-money-bill-wave"></i>
-    <div class="money-pulse"></div>
+  <!-- Floating icons -->
+  <div class="floating-icons">
+    <i class="fas fa-prescription-bottle-alt"></i>
+    <i class="fas fa-rupee-sign"></i>
+    <i class="fas fa-tablets"></i>
   </div>
 </section>
 
 
+   
 
 
 
@@ -2274,7 +2880,171 @@ No Regulation – While India has Jan Aushadhi Kendras (government-approved gene
         });
         
     </script>
-
+<div class="medicine-comparison-card">
+  <div class="comparison-header">
+    <h3><i class="fas fa-balance-scale"></i> Branded vs Generic - Same Salt, Huge Price Difference</h3>
+    <div class="toggle-view">
+      <button class="toggle-btn active" data-view="branded">Branded</button>
+      <button class="toggle-btn" data-view="generic">Generic</button>
+    </div>
+  </div>
+  
+  <div class="comparison-grid">
+    <!-- Medicine 1 -->
+    <div class="medicine-item branded">
+      <div class="medicine-header">
+        <span class="badge expensive">Most Prescribed</span>
+        <h4>Crocin Advance</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Paracetamol 650mg</div>
+        <div class="price">₹45-60 per strip</div>
+        <div class="additional-info">
+          <span class="added-salts">+ Caffeine 50mg</span>
+          <span class="marketing-tag">"Fast Action Formula"</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="medicine-item generic">
+      <div class="medicine-header">
+        <span class="badge affordable">Same Effect</span>
+        <h4>Paracetamol (Generic)</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Paracetamol 650mg</div>
+        <div class="price">₹8-15 per strip</div>
+        <div class="additional-info">
+          <span class="pure">No unnecessary additives</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Medicine 2 -->
+    <div class="medicine-item branded">
+      <div class="medicine-header">
+        <h4>Voveran SR</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Diclofenac Sodium 100mg</div>
+        <div class="price">₹120-150 per strip</div>
+        <div class="additional-info">
+          <span class="added-salts">+ Misoprostol 200mcg</span>
+          <span class="marketing-tag">"Gastric Protection"</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="medicine-item generic">
+      <div class="medicine-header">
+        <h4>Diclofenac (Generic)</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Diclofenac Sodium 100mg</div>
+        <div class="price">₹25-40 per strip</div>
+        <div class="additional-info">
+          <span class="pure">Single active ingredient</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Medicine 3 -->
+    <div class="medicine-item branded">
+      <div class="medicine-header">
+        <span class="badge expensive">Doctor's Choice</span>
+        <h4>Azithral</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Azithromycin 500mg</div>
+        <div class="price">₹300-400 per strip</div>
+        <div class="additional-info">
+          <span class="added-salts">Special coating</span>
+          <span class="marketing-tag">"Better Absorption"</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="medicine-item generic">
+      <div class="medicine-header">
+        <h4>Azithromycin (Generic)</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Azithromycin 500mg</div>
+        <div class="price">₹80-120 per strip</div>
+        <div class="additional-info">
+          <span class="pure">Equally effective</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Medicine 4 -->
+    <div class="medicine-item branded">
+      <div class="medicine-header">
+        <h4>Pan-D</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Pantoprazole 40mg</div>
+        <div class="price">₹90-120 per strip</div>
+        <div class="additional-info">
+          <span class="added-salts">+ Domperidone 30mg</span>
+          <span class="marketing-tag">"Double Action"</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="medicine-item generic">
+      <div class="medicine-header">
+        <h4>Pantoprazole (Generic)</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Pantoprazole 40mg</div>
+        <div class="price">₹25-40 per strip</div>
+        <div class="additional-info">
+          <span class="pure">No unnecessary combination</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Medicine 5 -->
+    <div class="medicine-item branded">
+      <div class="medicine-header">
+        <span class="badge expensive">New Variant</span>
+        <h4>Montair-LC</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Montelukast 10mg</div>
+        <div class="price">₹200-250 per strip</div>
+        <div class="additional-info">
+          <span class="added-salts">+ Levocetirizine 5mg</span>
+          <span class="marketing-tag">"Allergy Combo"</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="medicine-item generic">
+      <div class="medicine-header">
+        <h4>Montelukast (Generic)</h4>
+      </div>
+      <div class="medicine-details">
+        <div class="salt-name">Montelukast 10mg</div>
+        <div class="price">₹50-80 per strip</div>
+        <div class="additional-info">
+          <span class="pure">Take separately if needed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="comparison-summary">
+    <div class="savings-badge">
+      <i class="fas fa-rupee-sign"></i>
+      <span>Potential Savings: <strong>70-90%</strong></span>
+    </div>
+    <p class="disclaimer">
+      <i class="fas fa-exclamation-circle"></i> Always consult your doctor before switching medicines
+    </p>
+  </div>
+</div>
 <!-- Add this before the closing </body> tag -->
 <footer class="cosmic-footer">
   <div class="footer-orb"></div>
@@ -2449,6 +3219,87 @@ document.addEventListener('DOMContentLoaded', function() {
       this.parentElement.style.boxShadow = 'none';
     });
   }
+});
+</script>
+
+
+
+
+
+
+
+<script>
+// Animation on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  // Animate cards on scroll
+  const cards = document.querySelectorAll('.deception-card, .takeaway-box');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease';
+    observer.observe(card);
+  });
+  
+  // Floating icons animation
+  const icons = document.querySelectorAll('.floating-icons i');
+  icons.forEach((icon, index) => {
+    icon.style.animationDuration = `${Math.random() * 20 + 15}s`;
+    icon.style.animationDelay = `${index * 5}s`;
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Toggle between branded and generic views
+  const toggleBtns = document.querySelectorAll('.toggle-btn');
+  const medicineItems = document.querySelectorAll('.medicine-item');
+  
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Update active state
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Show/hide medicines
+      const view = this.getAttribute('data-view');
+      medicineItems.forEach(item => {
+        if (view === 'branded') {
+          item.style.display = item.classList.contains('branded') ? 'block' : 'none';
+        } else {
+          item.style.display = item.classList.contains('generic') ? 'block' : 'none';
+        }
+      });
+    });
+  });
+  
+  // Initial animation
+  const card = document.querySelector('.medicine-comparison-card');
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(20px)';
+  card.style.transition = 'all 0.6s ease';
+  
+  setTimeout(() => {
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
+  }, 300);
 });
 </script>
 </body>
